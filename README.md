@@ -1,1 +1,1 @@
-# Fantasy Football LM API
+# Fantasy Football ML API
