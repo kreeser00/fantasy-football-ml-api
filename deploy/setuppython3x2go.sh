@@ -23,6 +23,4 @@ sudo apt-get -f --force-yes --yes install
 sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sudo chmod 777 Miniconda3-latest-Linux-x86_64.sh
 sudo bash Miniconda3-latest-Linux-x86_64.sh -b
-echo 'export PATH=/home/ubuntu/miniconda3/bin:$PATH' >> ~/.bashrc 
-sudo /home/ubuntu/miniconda3/bin/conda create -y -q -n fantasyfootballenv
-sudo /home/ubuntu/miniconda3/bin/conda install -y -q -n fantasyfootballenv Flask keras pandas scikit-learn jsonschema mock gunicorn
+echo 'export PATH=/home/ubuntu/miniconda3/bin:$PATH' >> ~/.bashrc
