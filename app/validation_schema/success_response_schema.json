@@ -1,0 +1,60 @@
+ {
+	"type" : "object",
+	"additionalProperties": false,
+	"properties" :{
+	              "Results": {
+	                        "type": "object",
+	                        "additionalProperties": false,
+	                        "properties":{
+	                                    "ResponseParameters" : { 
+	                                             "type" : "object",
+	                                             "additionalProperties": false,               
+	                                             "properties": {
+		                                                "requestDt": {"type": "string"},
+		                                                "responseCode": {"type": "string"},
+		                                                "responseMessage": {"type": "string"}
+	                                              },
+	                                            "required": ["requestDt", "responseCode", "responseMessage"]
+	                                       },
+	                                       "InputParameters": { 
+	                                             "type" : "object",
+	                                             "additionalProperties": false,               
+	                                             "properties": {
+	                                                "Input": { "type": "object",
+	                                                           "additionalProperties": false,
+	                                                           "properties":{
+			                                                                  "type":{"type": "string"},
+			                                                                  "name": {"type": "string"},	
+			                                                                  "predictionLevel":{"type":"string", "enum":["ALL", "ROW"]},                                                                 
+			                                                                  "ColumnNames": {"type": "array"},
+			                                                                  "Values": {"type": "array"}	                                                                                                                                                  
+	                                                                       },
+	                                            				"required": ["type", "name", "predictionLevel", "ColumnNames", "Values"]
+	                                                          }
+	                                              },
+	                                            "required": ["Input"]
+	                                            },
+	                                         "OutputParameters": { 
+	                                             "type" : "object",
+	                                             "additionalProperties": false,               
+	                                             "properties": {
+	                                                "Output": { "type": "object",
+	                                                           "additionalProperties": false,
+	                                                           "properties":{
+			                                                                  "type":{"type": "string"},
+			                                                                  "name": {"type": "string"},
+			                                                                  "predictionLevel":{"type":"string", "enum":["ALL", "ROW"]},                                                                 
+			                                                                  "ColumnNames": {"type": "array"},
+			                                                                  "Values": {"type": "array"}	                                                                                                                                                  
+	                                                                       },
+	                                            				"required": ["type", "name", "predictionLevel", "ColumnNames", "Values"]
+	                                                          }
+	                                              },
+	                                            "required": ["Output"]
+	                                            }
+	                                      },
+	                        "required":["ResponseParameters", "InputParameters", "OutputParameters"]
+	                        }
+	             },
+	"required": ["Results"]   
+ }             

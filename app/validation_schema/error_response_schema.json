@@ -1,0 +1,31 @@
+ {
+	"type" : "object",
+	"additionalProperties": false,
+	"properties" :{
+	              "Results": {
+	                        "type": "object",
+	                        "additionalProperties": false,
+	                        "properties":{
+	                                    "ResponseParameters" : { 
+	                                             "type" : "object",
+	                                             "additionalProperties": false,               
+	                                             "properties": {
+	                                                "errorSubStatus": {"type": "object",
+	                                                                   "additionalProperties": false,
+	                                                                   "properties":{
+	                                                                       "subStatusCode":{"type": "string"},
+	                                                                       "subStatusMessage": {"type": "string"}
+	                                                                       } 
+	                                                                   },
+	                                                "requestDt": {"type": "string"},
+	                                                "responseCode": {"type": "string"},
+	                                                "responseMessage": {"type": "string"}
+	                                              },
+	                                            "required": ["errorSubStatus", "requestDt", "responseCode", "responseMessage"]
+	                                            }
+	                                      },
+	                        "required":["ResponseParameters"]
+	                        }
+	             },
+	"required": ["Results"]   
+ }             

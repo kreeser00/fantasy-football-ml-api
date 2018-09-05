@@ -1,0 +1,35 @@
+ {
+	"type" : "object",
+	"additionalProperties": false,
+	"properties" :{	              
+	                   "InputParameters": { 
+	                         "type" : "object",
+	                         "additionalProperties": false,               
+	                         "properties": {
+	                            "Input": { "type": "object",
+	                                       "additionalProperties": false,
+	                                       "properties":{
+	                                                      "type":{"type": "string"},
+	                                                      "PredictionLevel":{"type":"string", "enum":["ALL", "ROW"]},
+	                                                       "name": {"type": "string"},	                                                                  
+	                                                      "ColumnNames": {"type": "array"},
+	                                                      "Values": {"type": "array"}	                                                                                                                                                  
+	                                                   },
+	                        				"required": ["type", "name", "ColumnNames", "Values"]
+	                                      }
+	                          },
+	                          "required": ["Input"]
+	                        },
+	                        "GlobalParameters": { 
+	                             "type" : "object",
+	                             "additionalProperties": false,               
+	                             "properties": {
+	                                "packageName": { "type": "string"},
+	                                "traceId": { "type": "string"}
+	                              },
+	                            "required": ["packageName", "traceId"]
+	                        }
+	                        
+	             },
+	"required": ["InputParameters", "GlobalParameters"]
+ }             

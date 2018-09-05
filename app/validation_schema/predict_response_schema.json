@@ -1,0 +1,23 @@
+ {
+	"type" : "object",
+	"additionalProperties": false,
+	"properties" :{
+	              "PredictionResults": {
+	                        "type": "object",
+	                        "additionalProperties": false,
+	                        "properties":{
+	                                    "Results" : { 
+		                                             "type" : "object",
+		                                             "additionalProperties": false,               
+		                                             "properties": {
+		                                                "Predictions": {   "type": "object"},
+		                                                "DeviceVersion": {"type": "string"}
+		                                              },
+	                                            	"required": ["Predictions", "DeviceVersion"]
+	                                            }
+	                                      },
+	                        "required":["Results"]
+	                        }
+	             },
+	"required": ["PredictionResults"]   
+ }             

@@ -1,0 +1,59 @@
+name: fantasyfootballenv
+channels:
+  - defaults
+dependencies:
+  - _tflow_1100_select=0.0.3
+  - absl-py=0.4.1
+  - astor=0.7.1
+  - blas=1.0
+  - certifi=2018.8.24
+  - click=6.7
+  - flask=1.0.2
+  - gast=0.2.0
+  - grpcio=1.12.1
+  - h5py=2.8.0
+  - hdf5=1.10.2
+  - icc_rt=2017.0.4
+  - intel-openmp=2018.0.3
+  - itsdangerous=0.24
+  - jinja2=2.10
+  - jsonschema=2.6.0
+  - keras=2.2.2
+  - keras-applications=1.0.4
+  - keras-base=2.2.2
+  - keras-preprocessing=1.0.2
+  - libmklml=2018.0.3
+  - libprotobuf=3.6.0
+  - markdown=2.6.11
+  - markupsafe=1.0
+  - mkl=2018.0.3
+  - mkl_fft=1.0.4
+  - mkl_random=1.0.1
+  - mock=2.0.0
+  - numpy=1.15.1
+  - numpy-base=1.15.1
+  - pandas=0.23.4
+  - pbr=4.2.0
+  - pip=10.0.1
+  - protobuf=3.6.0
+  - python=3.6.6
+  - python-dateutil=2.7.3
+  - pytz=2018.5
+  - pyyaml=3.13
+  - scikit-learn=0.19.1
+  - scipy=1.1.0
+  - setuptools=40.0.0
+  - six=1.11.0
+  - tensorboard=1.10.0
+  - tensorflow=1.10.0
+  - tensorflow-base=1.10.0
+  - termcolor=1.1.0
+  - vc=14.1
+  - vs2015_runtime=15.5.2
+  - werkzeug=0.14.1
+  - wheel=0.31.1
+  - wincertstore=0.2
+  - yaml=0.1.7
+  - zlib=1.2.11
+prefix: C:\Users\kjree\Anaconda3\envs\fantasyfootballenv
+

@@ -1,0 +1,24 @@
+{
+    "version": 1,
+    "disable_existing_loggers": true,
+    "formatters": {
+       "custom": {
+            "format": "%(name)s %(asctime)s %(levelname)s %(modelname)s %(message)s"
+        }
+        
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "custom"
+        }
+    },
+    "loggers": {
+        "customLogger": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": "False"
+        }
+    }
+}
