@@ -2,8 +2,11 @@
 /bin/*
 /.settings/*
 /.idea/*
+/.ipynb_checkpoints/*
+/__pycache__/*
 *.iml
 *.classpath
 *.project
 *.DS_Store
 *.csv
+*
