@@ -11,9 +11,9 @@
 		                                             "additionalProperties": false,               
 		                                             "properties": {
 		                                                "Predictions": {   "type": "object"},
-		                                                "DeviceVersion": {"type": "string"}
+		                                                "Position": {"type": "string"}
 		                                              },
-	                                            	"required": ["Predictions", "DeviceVersion"]
+	                                            	"required": ["Predictions", "Position"]
 	                                            }
 	                                      },
 	                        "required":["Results"]

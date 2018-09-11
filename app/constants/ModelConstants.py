@@ -2,5 +2,5 @@ class ModelConstants:
     PREDICTIONRESULTS = "PredictionResults"
     RESULTS = "Results"
     PREDICTIONS = "Predictions"
-    DEVICE_VERSION = "DeviceVersion"
+    POSITION = "Position"
     MODEL_NAME_BTU = "BTU"

@@ -77,11 +77,12 @@ def predict_model():
 
     request_json = request.get_json()
 
-    logger.info("Received Request for POST predict.... Request Json is" + str(request_json),
+    logger.info("Received Request for POST predict.... Request Json is " + str(request_json),
                 extra={'modelname': model_name})
 
     try:
         device_version_data_frame_dict = __get_device_version_data_frame_dictionary(request_json)
+        return json.dumps(device_version_data_frame_dict,sort_keys=True)
     except KeyError as ex:
         error_json = __get_error_dict(ResponseStatusCodes.ERROR.value,
                                       ResponseStatusCodes.ERROR.name,
@@ -111,85 +112,6 @@ def predict_model():
                          extra={'modelname': model_name})
         return json.dumps(error_json, sort_keys=True)
 
-    if not device_version_data_frame_dict:
-        error_json = __get_error_dict(ResponseStatusCodes.ERROR.value,
-                                      ResponseStatusCodes.ERROR.name,
-                                      ResponseSubStatusCodes.FF_4003.name,
-                                      ResponseSubStatusCodes.FF_4003.value)
-        logger.error("POST predict. No data available to create data frames..........."+str(error_json),
-                         extra={'modelname':model_name})
-        return json.dumps(error_json, sort_keys=True)
-    else:
-        for key, val in device_version_data_frame_dict.items():
-            if DataFrame(val).empty:
-                error_json = __get_error_dict(ResponseStatusCodes.ERROR.value,
-                                              ResponseStatusCodes.ERROR.name,
-                                              ResponseSubStatusCodes.FF_4003.name,
-                                              ResponseSubStatusCodes.FF_4003.value)
-                logger.error("POST predict. No data available to create data frames for device name: " + key +
-                             "............." + str(error_json),
-                             extra={'modelname':model_name})
-                return json.dumps(error_json, sort_keys=True)
-
-    try:
-        is_validated = True
-        if device_version_data_frame_dict['year'].dtype != np.int64:
-            is_validated = False
-    except Exception as ex:
-        error_json = __get_error_dict(ResponseStatusCodes.INTERNAL_SERVER_ERROR.value,
-                                      ResponseStatusCodes.INTERNAL_SERVER_ERROR.name,
-                                      ResponseSubStatusCodes.FF_5001.name,
-                                      ResponseSubStatusCodes.FF_5001.value)
-        logger.error("POST predict. Model validation routine raised an error......." + str(ex),
-                     extra={'modelname': model_name})
-        return json.dumps(error_json, sort_keys=True)
-
-    if is_validated:
-        try:
-            predicted_value_json = __predict(device_version_serializedObjectData_dict, device_version_data_frame_dict)
-        except Exception as ex:
-            error_json = __get_error_dict(ResponseStatusCodes.INTERNAL_SERVER_ERROR.value,
-                                          ResponseStatusCodes.INTERNAL_SERVER_ERROR.name,
-                                          ResponseSubStatusCodes.FF_5003.name,
-                                          ResponseSubStatusCodes.FF_5003.value)
-            logger.error("POST predict. Model Prediction routine raised an error......." + str(ex),
-                         extra={'modelname': model_name})
-            return json.dumps(error_json, sort_keys=True)
-
-        if not __is_valid_predict_response(predicted_value_json):
-            error_json = __get_error_dict(ResponseStatusCodes.INTERNAL_SERVER_ERROR.value,
-                                          ResponseStatusCodes.INTERNAL_SERVER_ERROR.name,
-                                          ResponseSubStatusCodes.FF_5007.name, ResponseSubStatusCodes.FF_5007.value)
-            logger.error("POST predict. Model Prediction returned json in an invalid structure.......",
-                         extra={'modelname': model_name})
-            return json.dumps(error_json, sort_keys=True)
-
-        try:
-            response_json = __create_success_response(request_json, predicted_value_json)
-        except PredictionLevelException as ex:
-            error_json = __get_error_dict(ResponseStatusCodes.ERROR.value,
-                                          ResponseStatusCodes.ERROR.name,
-                                          ResponseSubStatusCodes.FF_4005.name,
-                                          ResponseSubStatusCodes.FF_4005.value +
-                                          ". " + str(ex))
-            error_message = "POST predict. Model Prediction returned json with invalid data " + \
-                            "violating predictionlevel policy......."
-            logger.error(error_message + str(ex), extra={'modelname': model_name})
-            return json.dumps(error_json, sort_keys=True)
-
-        logger.info("POST predict. Prediction Response Json is ...... " + str(response_json),
-                    extra={'modelname': model_name})
-
-        return json.dumps(response_json, sort_keys=True)
-
-    else:
-        error_json = __get_error_dict(ResponseStatusCodes.INTERNAL_SERVER_ERROR.value,
-                                      ResponseStatusCodes.INTERNAL_SERVER_ERROR.name,
-                                      ResponseSubStatusCodes.FF_5004.name,
-                                      ResponseSubStatusCodes.FF_5004.value)
-        logger.error("POST predict. Model Validation failed. Invalid Model......" + str(error_json),
-                     extra={'modelname': model_name})
-        return json.dumps(error_json, sort_keys=True)
 
 
 """
@@ -203,6 +125,8 @@ Value: DataFrame (created from columnNames as data frame header and values as da
 def __get_device_version_data_frame_dictionary(request_json):
 
     device_inputs = request_json[requestConstants.REQUEST_ELEMENT_INPUTPARAMETERS]
+
+    print(device_inputs)
 
     device_version_data_frame_dict = {}
 
